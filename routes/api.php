@@ -14,6 +14,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::apiResource('users', UserController::class);
 
 Route::get('/rooms', [App\Http\Controllers\RoomController::class, 'index']);
