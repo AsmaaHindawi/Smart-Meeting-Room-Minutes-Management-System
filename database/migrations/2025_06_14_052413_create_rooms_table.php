@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('rooms', function (Blueprint $table) {
-        $table->id();
-        $table->string('location');
-        $table->integer('capacity');
-        $table->string('features')->nullable(); // e.g., Projector, AC
-        $table->boolean('is_active')->default(true);
-        $table->timestamps();
+        Schema::create('rooms', function (Blueprint $table) {
+            $table->id();
+            $table->string('location');
+            $table->integer('capacity');
+            $table->string('features')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
     });
-    
+
     }
 
     /**

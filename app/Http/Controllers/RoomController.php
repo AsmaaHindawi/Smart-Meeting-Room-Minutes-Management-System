@@ -13,7 +13,9 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return response()->json(Room::all(), 200);
+        return response()->json([
+            'rooms' => Room::all()
+        ], 200);
     }
 
     /**
@@ -32,13 +34,18 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'location' => 'required|string|max:255',
-            'capacity' => 'required|integer',
-            'features' => 'nullable|string',
-            'is_active' => 'boolean',
+            'location'   => 'required|string|max:255',
+            'capacity'   => 'required|integer',
+            'features'   => 'nullable|string',
+            'is_active'  => 'boolean',
         ]);
 
-        return Room::create($validated);
+        $room = Room::create($validated);
+
+        return response()->json([
+            'message' => 'Room created successfully.',
+            'room'    => $room
+        ], 201);
     }
 
     /**
@@ -47,7 +54,9 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        return response()->json($room, 200);
+        return response()->json([
+            'room' => $room
+        ], 200);
     }
 
     /**
@@ -66,17 +75,17 @@ class RoomController extends Controller
     public function update(Request $request, Room $room)
     {
         $validated = $request->validate([
-            'location' => 'sometimes|required|string|max:255',
-            'capacity' => 'sometimes|required|integer',
-            'features' => 'nullable|string',
-            'is_active' => 'boolean',
+            'location'   => 'sometimes|required|string|max:255',
+            'capacity'   => 'sometimes|required|integer',
+            'features'   => 'nullable|string',
+            'is_active'  => 'boolean',
         ]);
 
         $room->update($validated);
 
         return response()->json([
             'message' => 'Room updated successfully.',
-            'room' => $room
+            'room'    => $room
         ], 200);
     }
 
