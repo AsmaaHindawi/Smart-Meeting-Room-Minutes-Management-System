@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MeetingController;
+
 
 // ✅ Laravel Breeze Auth Routes
 Route::post('/register', [RegisteredUserController::class, 'store']);
@@ -22,3 +24,6 @@ Route::get('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'show']);
 Route::post('/rooms', [App\Http\Controllers\RoomController::class, 'store']);
 Route::put('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'update']);
 Route::delete('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'destroy']);
+
+
+Route::apiResource('meetings', MeetingController::class);
