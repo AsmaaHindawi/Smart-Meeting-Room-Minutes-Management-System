@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\MinutesOfMeetingController;
+use App\Http\Controllers\NotificationController;
 
 // ✅ Laravel Breeze Auth Routes
 Route::post('/register', [RegisteredUserController::class, 'store']);
@@ -27,8 +28,6 @@ Route::delete('/rooms/{id}', [App\Http\Controllers\RoomController::class, 'destr
 
 
 Route::apiResource('meetings', MeetingController::class);
-
-
-
-
 Route::apiResource('minutes', MinutesOfMeetingController::class);
+
+Route::apiResource('notifications', NotificationController::class);
